@@ -8,20 +8,19 @@ export default function Home() {
   const data = json.results;
   const [movies, setMovies] = useState(data);
 
-  console.log(movies);
+  //console.log(movies);
   return (
     <>
-      <h1>Home 컴포넌트</h1>
-      <ul>
+      <h1 className="text-center text-3xl font-bold">Home 컴포넌트</h1>
+      <ul className="flex flex-wrap gap-10 justify-center">
         {movies.map((movie) => (
-          <li key={movie.id}>
-            <MovieCard
-              id={movie.id}
-              poster={`${BASE_URL}${movie.backdrop_path}`}
-              title={movie.title}
-              rating={movie.rating}
-            />
-          </li>
+          <MovieCard
+            key={movie.id}
+            id={movie.id}
+            poster={`${BASE_URL}${movie.backdrop_path}`}
+            title={movie.title}
+            rating={movie.rating}
+          />
         ))}
       </ul>
     </>
