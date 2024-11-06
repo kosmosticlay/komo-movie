@@ -4,24 +4,22 @@ import movieListData from "../data/movieListData.json";
 import { BASE_URL } from "../App";
 
 export default function Home() {
-  const json = movieListData;
-  const data = json.results;
+  const data = movieListData.results;
   const [movies, setMovies] = useState(data);
 
-  console.log(movies);
+  //console.log(movies);
   return (
     <>
-      <h1>Home 컴포넌트</h1>
-      <ul>
+      <h1 className="text-3xl font-bold text-center">Home 컴포넌트</h1>
+      <ul className="flex flex-wrap justify-center gap-10">
         {movies.map((movie) => (
-          <li key={movie.id}>
-            <MovieCard
-              id={movie.id}
-              poster={`${BASE_URL}${movie.backdrop_path}`}
-              title={movie.title}
-              rating={movie.rating}
-            />
-          </li>
+          <MovieCard
+            key={movie.id}
+            id={movie.id}
+            poster={`${BASE_URL}${movie.backdrop_path}`}
+            title={movie.title}
+            vote_average={movie.vote_average}
+          />
         ))}
       </ul>
     </>
