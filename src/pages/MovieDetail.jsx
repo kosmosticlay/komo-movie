@@ -1,11 +1,14 @@
 import { useState } from "react";
 import movieDetailData from "../data/movieDetailData.json";
 import { BASE_URL } from "../App";
+import { useParams } from "react-router-dom";
 
 export default function MovieDetail() {
   const [movie, setMovie] = useState(movieDetailData);
+  const params = useParams();
 
   console.log(movie);
+  console.log(params);
   return (
     <div className="flex flex-col w-full h-screen ">
       <h1 className="text-3xl font-bold text-center">{movie.title}</h1>
