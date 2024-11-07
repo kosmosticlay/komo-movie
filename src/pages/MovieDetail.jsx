@@ -1,31 +1,26 @@
-import { useState } from "react";
-import movieDetailData from "../data/movieDetailData.json";
-import { BASE_URL } from "../App";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import MovieDetailInfo from "../components/MovieDetailInfo";
+import { getMovieDetail } from "../API/api";
 
 export default function MovieDetail() {
-  const [movie, setMovie] = useState(movieDetailData);
+  const [movie, setMovie] = useState({});
   const params = useParams();
 
-  console.log(movie);
-  console.log(params);
-  return (
-    <div className="flex flex-col w-full h-screen ">
-      <h1 className="text-3xl font-bold text-center">{movie.title}</h1>
-      <main className="flex h-screen gap-10 m-10 ">
-        <img
-          className="w-1/2 h-full"
-          src={`${BASE_URL}${movie.backdrop_path}`}
-        />
-        <section className="w-1/2 ">
-          <span>{movie.title}</span>
-          <span>{movie.vote_average}</span>
-          <p>
-            {movie.genres && movie.genres.map((genre) => genre.name).join(", ")}
-          </p>
-          <p>{movie.overview}</p>
-        </section>
-      </main>
-    </div>
-  );
+  const movieId = params.id;
+
+  useEffect(() => {
+    const loadMovie = async () => {
+      try {
+        const movieData = await getMovieDetail(movieId);
+        setMovie(movieData);
+      } catch (error) {
+        console.error("Failed to fetch movie details:", error);
+      }
+    };
+
+    loadMovie();
+  }, [movieId]);
+
+  return <MovieDetailInfo movie={movie} />;
 }
