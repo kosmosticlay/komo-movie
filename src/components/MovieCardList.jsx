@@ -1,7 +1,5 @@
 import { BASE_URL } from "../App";
 import MovieCard from "./MovieCard";
-import { useEffect, useState } from "react";
-import { getPopularMovies } from "../API/api";
 
 /* swiper */
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,22 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-export default function MovieCardList({ showPagination = false }) {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    const loadMovies = async () => {
-      try {
-        const moviesData = await getPopularMovies();
-        setMovies(moviesData);
-      } catch (error) {
-        console.error("Failed to fetch popular movies:", error);
-      }
-    };
-
-    loadMovies();
-  }, []);
-
+export default function MovieCardList({ showPagination = false, movies }) {
   return (
     <div className={`${showPagination ? "h-[350px]" : "h-auto"} flex w-full`}>
       <Swiper
