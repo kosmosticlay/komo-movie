@@ -22,8 +22,7 @@ a {
 .swiper-button-prev {
   @apply w-16 h-64  top-5 flex text-orange-500 !important;
 }
-
-.swiper-button-prev {
+a .swiper-button-prev {
   @apply absolute left-0 !important;
 }
 
@@ -55,9 +54,16 @@ a {
 
 /* Utilities layer */
 @layer utilities {
+  .screen-minus-nav {
+    @apply h-[calc(100vh-5rem)]; /* nav를 제외한 나머지 height */
+  }
+
+  /* nav */
   .nav-wide {
     @apply md:w-full md:h-20 md:flex-row px-10 md:py-0;
   }
+
+  /* icons */
   .stroke-hover {
     @apply hover:stroke-orange-700;
   }
