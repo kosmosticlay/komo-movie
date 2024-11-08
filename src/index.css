@@ -45,3 +45,23 @@ a {
 .swiper-pagination-bullet-active {
   @apply bg-red-500;
 }
+
+/* base layer */
+@layer base {
+  body {
+    @apply md:pt-20; /* md 이상 화면에서만 padding-top 적용 */
+  }
+}
+
+/* Utilities layer */
+@layer utilities {
+  .nav-wide {
+    @apply md:w-full md:h-20 md:flex-row px-10 md:py-0;
+  }
+  .stroke-hover {
+    @apply hover:stroke-orange-700;
+  }
+  .fill-hover {
+    @apply hover:fill-orange-700;
+  }
+}
