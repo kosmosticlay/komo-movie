@@ -6,6 +6,7 @@ import {
 import { UserPlusIcon as SignUpIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import SearchForm from "../form/SearchForm";
 
 export default function NavBar() {
   const location = useLocation();
@@ -20,8 +21,8 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="fixed top-0 z-10 w-20 h-full bg-black md:border-b-2 md:w-full md:h-20">
-        <div className="flex w-full h-screen border-b-2 md:h-20 md:w-20">
+      <nav className="fixed top-0 w-20 h-full md:border-b-2 md:w-screen md:h-20">
+        <div className="z-20 flex w-full h-screen border-b-2 md:h-20 ">
           {/* 메뉴 아이콘 */}
           <MenuBarsIcon
             onClick={toggleMenu}
@@ -59,23 +60,28 @@ export default function NavBar() {
           </div>
 
           {/* 데스크톱 메뉴 */}
-          <section className="w-full hidden md:flex gap-10 *:text-xl *:font-bold *:whitespace-nowrap items-center px-10">
-            <Link to="/" className="text-white">
-              Logo
-            </Link>
-            <Link
-              to="/login"
-              className={path === "/login" ? "text-orange-500" : "text-white"}
-            >
-              Login
-            </Link>
-            <Link
-              to="/sign-up"
-              className={path === "/sign-up" ? "text-orange-500" : "text-white"}
-            >
-              Sign Up
-            </Link>
+          <section className="w-full justify-between hidden md:flex *:text-xl *:font-bold *:whitespace-nowrap items-center px-10">
+            <div className="flex gap-10">
+              <Link to="/" className="text-white">
+                Logo
+              </Link>
+              <Link
+                to="/login"
+                className={path === "/login" ? "text-orange-500" : "text-white"}
+              >
+                Login
+              </Link>
+              <Link
+                to="/sign-up"
+                className={
+                  path === "/sign-up" ? "text-orange-500" : "text-white"
+                }
+              >
+                Sign Up
+              </Link>
+            </div>
           </section>
+          <SearchForm />
         </div>
       </nav>
     </>
