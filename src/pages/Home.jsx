@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { getPopularMovies } from "../API/api";
+
 import MovieCardList from "../components/MovieCardList";
+import { getMovies } from "../API/api";
 
 export default function Home() {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -8,7 +9,7 @@ export default function Home() {
   useEffect(() => {
     const loadMovies = async () => {
       try {
-        const moviesData = await getPopularMovies();
+        const moviesData = await getMovies("popular");
         setPopularMovies(moviesData);
       } catch (error) {
         console.error("Failed to fetch popular movies:", error);
