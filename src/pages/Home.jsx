@@ -20,9 +20,11 @@ export default function Home() {
   }, []);
 
   return (
-    <>
-      <h1 className="text-3xl font-bold text-center">Home 컴포넌트</h1>
+    <main className="w-full pt-20 md:p-0 ">
+      <h1 className="text-3xl font-bold text-center text-white">
+        Home 컴포넌트
+      </h1>
       <MovieCardList showPagination={true} movies={popularMovies} />
-    </>
+    </main>
   );
 }

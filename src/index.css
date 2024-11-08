@@ -10,6 +10,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: black;
+}
+
 li {
   list-style: none;
 }
@@ -54,18 +58,21 @@ a .swiper-button-prev {
 
 /* Utilities layer */
 @layer utilities {
-  .screen-minus-nav {
+  .height-minus-nav {
     @apply h-[calc(100vh-5rem)]; /* nav를 제외한 나머지 height */
+  }
+  .width-minus-nav {
+    @apply w-[calc(100%-5rem)] ml-20 md:mx-auto; /* nav를 제외한 나머지 width */
   }
 
   /* nav */
   .nav-wide {
-    @apply md:w-full md:h-20 md:flex-row px-10 md:py-0;
+    @apply md:w-full md:h-20 md:flex-row md:py-0 md:justify-start;
   }
 
   /* icons */
   .stroke-hover {
-    @apply hover:stroke-orange-700;
+    @apply hover:stroke-orange-700 cursor-pointer;
   }
   .fill-hover {
     @apply hover:fill-orange-700;
