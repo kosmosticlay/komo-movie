@@ -5,15 +5,23 @@ import {
 } from "@heroicons/react/24/outline";
 import { UserPlusIcon as SignUpIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchForm from "../form/SearchForm";
 
 export default function NavBar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
   const path = location.pathname;
-  console.log(path);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    if (searchQuery) {
+      navigate(`/search?query=${searchQuery}`);
+    }
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -81,7 +89,11 @@ export default function NavBar() {
               </Link>
             </div>
           </section>
-          <SearchForm />
+          <SearchForm
+            setSearchQuery={setSearchQuery}
+            handleSearch={handleSearch}
+            searchQuery={searchQuery}
+          />
         </div>
       </nav>
     </>
