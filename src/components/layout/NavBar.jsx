@@ -2,8 +2,8 @@ import {
   Bars3Icon as MenuBarsIcon,
   ArrowLeftEndOnRectangleIcon as LoginIcon,
   ChevronLeftIcon as BackIcon,
+  UserPlusIcon as SignUpIcon,
 } from "@heroicons/react/24/outline";
-import { UserPlusIcon as SignUpIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchForm from "../form/SearchForm";
@@ -12,25 +12,40 @@ import { useDebounce } from "../../hooks/useDebounce";
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
   const location = useLocation();
   const path = location.pathname;
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (debouncedSearchQuery !== null) {
-      navigate(
-        debouncedSearchQuery
-          ? `/search?query=${debouncedSearchQuery}`
-          : "/search"
-      );
+  const handleSearch = (event) => {
+    event.preventDefault();
+    if (searchQuery.trim() === "") {
+      navigate("/search");
+    } else {
+      navigate(`/search?query=${searchQuery}`);
     }
-  }, [debouncedSearchQuery, navigate]);
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    if (location.pathname === "/search") {
+      if (debouncedSearchQuery) {
+        navigate(`/search?query=${debouncedSearchQuery}`);
+      } else {
+        navigate("/search");
+      }
+    }
+  }, [debouncedSearchQuery, navigate, location.pathname]);
+
+  useEffect(() => {
+    if (location.pathname !== "/search") {
+      setSearchQuery("");
+    }
+  }, [location.pathname]);
 
   return (
     <>
@@ -96,6 +111,7 @@ export default function NavBar() {
           </section>
           <SearchForm
             setSearchQuery={setSearchQuery}
+            handleSearch={handleSearch}
             searchQuery={searchQuery}
           />
         </div>

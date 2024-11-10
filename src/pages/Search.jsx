@@ -10,6 +10,11 @@ export default function Search() {
 
   useEffect(() => {
     const loadMovies = async () => {
+      if (!query) {
+        setSearchedMovies([]);
+        return;
+      }
+
       try {
         const moviesData = await searchMovies(query);
         setSearchedMovies(moviesData.results);
@@ -23,7 +28,7 @@ export default function Search() {
   }, [query]);
 
   return (
-    <main className="flex flex-col gap-10">
+    <main className="flex flex-col gap-10 pt-20 md:p-0">
       <h1 className="text-3xl font-bold text-center text-white">
         Search 컴포넌트
       </h1>
@@ -36,7 +41,7 @@ export default function Search() {
           검색어를 입력하세요!
         </p>
       )}
-      <MovieCardList showPagination={true} movies={searchedMovies} />
+      {query && <MovieCardList showPagination={true} movies={searchedMovies} />}
     </main>
   );
 }
