@@ -27,7 +27,15 @@ export default function Search() {
       <h1 className="text-3xl font-bold text-center text-white">
         Search 컴포넌트
       </h1>
-      <p className="text-xl font-bold text-center text-white">검색어:{query}</p>
+      {query ? (
+        <p className="text-xl font-bold text-center text-white">
+          검색어:{query}
+        </p>
+      ) : (
+        <p className="text-xl font-bold text-center text-white">
+          검색어를 입력하세요!
+        </p>
+      )}
       <MovieCardList showPagination={true} movies={searchedMovies} />
     </main>
   );

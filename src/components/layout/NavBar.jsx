@@ -4,24 +4,29 @@ import {
   ChevronLeftIcon as BackIcon,
 } from "@heroicons/react/24/outline";
 import { UserPlusIcon as SignUpIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchForm from "../form/SearchForm";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
   const location = useLocation();
   const path = location.pathname;
 
   const navigate = useNavigate();
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    if (searchQuery) {
-      navigate(`/search?query=${searchQuery}`);
+  useEffect(() => {
+    if (debouncedSearchQuery !== null) {
+      navigate(
+        debouncedSearchQuery
+          ? `/search?query=${debouncedSearchQuery}`
+          : "/search"
+      );
     }
-  };
+  }, [debouncedSearchQuery, navigate]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -91,7 +96,6 @@ export default function NavBar() {
           </section>
           <SearchForm
             setSearchQuery={setSearchQuery}
-            handleSearch={handleSearch}
             searchQuery={searchQuery}
           />
         </div>
