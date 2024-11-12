@@ -1,13 +1,18 @@
 import AuthInput from "./AuthInput";
 
-export default function AuthInputField({ fieldName, type }) {
+export default function AuthInputField({ name, type, value, onChange }) {
   return (
     <div className="w-full mb-5">
-      <label
-        htmlFor={fieldName}
-        className="text-xl font-bold text-white "
-      >{`${fieldName}`}</label>
-      <AuthInput id={fieldName} name={fieldName} type={type} />
+      <label htmlFor={name} className="text-xl font-bold text-white">
+        {`${name}`}
+      </label>
+      <AuthInput
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+      />
     </div>
   );
 }

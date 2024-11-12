@@ -1,16 +1,65 @@
+import { useState } from "react";
 import AuthInputField from "../../components/form/AuthInputField";
 import SubmitBtn from "../../components/form/SubmitBtn";
+import { useNavigate } from "react-router-dom";
+import { signUp } from "../../API/authAPI";
 
 export default function SignUp() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const userData = {
+      email: email,
+      password: password,
+      options: {
+        data: {
+          name, // user_metadata로 전달
+          liked: [], // 좋아요 목록 (영화 ID)
+        },
+      },
+    };
+
+    try {
+      console.log(userData);
+      await signUp(userData);
+      navigate("/");
+    } catch (error) {
+      console.error("회원가입 실패:", error.message);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center min-h-[700px] w-full h-screen bg-black md:height-minus-nav">
-      <form className="bg-slate-400 flex flex-col items-center justify-center w-[450px] mx-auto p-5">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-slate-400 flex flex-col items-center justify-center w-[450px] mx-auto p-5"
+      >
         <h1 className="my-10 text-3xl">회원가입 컴포넌트</h1>
         <ul className="w-full">
-          <AuthInputField fieldName="name" type="text" />
-          <AuthInputField fieldName="email" type="email" />
-          <AuthInputField fieldName="password" type="password" />
-          <AuthInputField fieldName="confirm-password" type="password" />
+          <AuthInputField
+            name="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <AuthInputField
+            name="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <AuthInputField
+            name="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <AuthInputField name="confirm-password" type="password" />
         </ul>
         <SubmitBtn>Sign Up</SubmitBtn>
       </form>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { searchMovies } from "../API/api";
+import { searchMovies } from "../API/tmdbAPI";
 import MovieCardList from "../components/MovieCardList";
 
 export default function Search() {

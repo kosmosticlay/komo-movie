@@ -1,5 +1,5 @@
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-const ACCESS_TOKEN = import.meta.env.ACCESS_TOKEN;
+const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN;
 
 const BASE_URL = "https://api.themoviedb.org/3/movie";
 const SEARCH_URL = "https://api.themoviedb.org/3/search/movie";

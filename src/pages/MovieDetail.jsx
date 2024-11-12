@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MovieDetailInfo from "../components/MovieDetailInfo";
-import { getMovieDetail } from "../API/api";
+import { getMovieDetail } from "../API/tmdbAPI";
 
 export default function MovieDetail() {
   const [movie, setMovie] = useState({});
