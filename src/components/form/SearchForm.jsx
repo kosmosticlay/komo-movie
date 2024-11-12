@@ -12,7 +12,7 @@ export default function SearchForm({
   return (
     <form
       onSubmit={handleSearch}
-      className="fixed hidden gap-2 mt-3 sm:flex top-5 right-10"
+      className="fixed hidden gap-2 mt-3 sm:flex top-5 right-24"
     >
       <input
         className="pl-2 font-normal text-white bg-transparent border-b-2 border-white outline-none min-w-56 focus:border-orange-500"
