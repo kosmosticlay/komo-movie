@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 
 import MovieCardList from "../components/MovieCardList";
 import { getMovies } from "../API/tmdbAPI";
+import { useUser } from "../hooks/useUser";
 
 export default function Home() {
+  const user = useUser();
+  console.log(user);
   const [popularMovies, setPopularMovies] = useState([]);
 
   useEffect(() => {

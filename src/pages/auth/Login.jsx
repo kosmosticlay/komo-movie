@@ -3,6 +3,7 @@ import AuthInputField from "../../components/form/AuthInputField";
 import SubmitBtn from "../../components/form/SubmitBtn";
 import { login } from "../../API/authAPI";
 import { useNavigate } from "react-router-dom";
+import SocialLoginBtn from "../../components/form/SocialLoginBtn";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,6 @@ export default function Login() {
       const { data, error } = await login(userData);
 
       if (error) {
-        alert("로그인 실패: 이메일 또는 비밀번호가 일치하지 않습니다.");
         return;
       }
 
@@ -37,10 +37,10 @@ export default function Login() {
     <div className="flex items-center justify-center w-full h-screen bg-black md:height-minus-nav">
       <form
         onSubmit={handleSubmit}
-        className="bg-slate-400 flex flex-col items-center justify-center md:mt-0 w-[450px] mx-auto p-5"
+        className="bg-slate-400 gap-4 flex flex-col items-center justify-center md:mt-0 w-[450px] mx-auto p-5"
       >
-        <h1 className="my-10 text-3xl">로그인 컴포넌트</h1>
-        <ul className="w-full">
+        <h1 className="my-5 text-3xl">로그인 컴포넌트</h1>
+        <ul className="flex flex-col w-full gap-3">
           <AuthInputField
             name="email"
             type="email"
@@ -55,6 +55,7 @@ export default function Login() {
           />
         </ul>
         <SubmitBtn>Login</SubmitBtn>
+        <SocialLoginBtn />
       </form>
     </div>
   );

@@ -11,6 +11,7 @@ export async function signUp(userData) {
   console.log("error : ", error);
 }
 
+/* 이메일 로그인 */
 export async function login(userData) {
   let { data, error } = await supabase.auth.signInWithPassword(userData);
 
@@ -18,6 +19,19 @@ export async function login(userData) {
   console.log("error : ", error);
 
   return { data, error };
+}
+
+/* 소셜 로그인 (구글) */
+export async function socialLogin() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: "https://qhzbirqbyqijlvfopawu.supabase.co/auth/v1/callback",
+    },
+  });
+
+  console.log(data);
+  console.log("error : ", error);
 }
 
 export async function logout() {

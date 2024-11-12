@@ -2,7 +2,7 @@ import AuthInput from "./AuthInput";
 
 export default function AuthInputField({ name, type, value, onChange }) {
   return (
-    <div className="w-full mb-5">
+    <div className="w-full">
       <label htmlFor={name} className="text-xl font-bold text-white">
         {`${name}`}
       </label>
