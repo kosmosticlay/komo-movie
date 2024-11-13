@@ -1,12 +1,9 @@
-import { useEffect, useState } from "react";
-
 import MovieCardList from "../components/MovieCardList";
 import { getMovies } from "../API/tmdbAPI";
-import { useUser } from "../hooks/useUser";
+
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const user = useUser();
-  console.log(user);
   const [popularMovies, setPopularMovies] = useState([]);
 
   useEffect(() => {
@@ -22,8 +19,10 @@ export default function Home() {
     loadMovies();
   }, []);
 
+  console.log(popularMovies);
+
   return (
-    <main className="w-full pt-20 md:p-0 ">
+    <main className="w-full pt-20 bg-blue-200 md:p-0 ">
       <h1 className="text-3xl font-bold text-center text-white">
         Home 컴포넌트
       </h1>

@@ -1,3 +1,6 @@
+/* font */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +14,10 @@
 }
 
 body {
+  min-width: 350px;
+  font-family: "Rubik", sans-serif; /* 영어 폰트 */
   background-color: black;
+  color: white;
 }
 
 li {
@@ -49,11 +55,10 @@ a .swiper-button-prev {
   @apply bg-red-500;
 }
 
-/* base layer */
-@layer base {
-  body {
-    @apply md:pt-20; /* md 이상 화면에서만 padding-top 적용 */
-  }
+/* Base layer */
+
+/* Components layer */
+@layer components {
 }
 
 /* Utilities layer */
@@ -66,15 +71,33 @@ a .swiper-button-prev {
   }
 
   /* nav */
+  .nav-title {
+    @apply font-semibold cursor-pointer;
+  }
+
   .nav-wide {
     @apply md:w-full md:h-20 md:flex-row md:py-0 md:justify-start;
   }
 
   /* icons */
+  .customIcon-sm {
+    @apply w-5 h-5 cursor-pointer;
+  }
+  .customIcon-md {
+    @apply w-7 h-7 cursor-pointer;
+  }
   .stroke-hover {
-    @apply hover:stroke-orange-700 cursor-pointer;
+    @apply hover:stroke-orange-500 cursor-pointer;
   }
   .fill-hover {
-    @apply hover:fill-orange-700;
+    @apply hover:fill-orange-500;
+  }
+  .text-hover {
+    @apply hover:text-orange-500;
+  }
+
+  /* transitions */
+  .transition-smooth {
+    @apply transition-all duration-300;
   }
 }
