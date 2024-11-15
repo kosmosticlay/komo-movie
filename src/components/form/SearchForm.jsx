@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { useEffect, useRef, useState } from "react";
-import { useRemoveFocus } from "../../hooks/useRemoveFocus";
+import useRemoveFocus from "../../hooks/useRemoveFocus";
 
 export default function SearchForm({
   searchQuery,
@@ -39,14 +39,16 @@ export default function SearchForm({
     <div
       onClick={() => setIsWide(true)}
       className={`overflow-hidden transition-smooth flex gap-2 items-center border rounded-sm h-8 ${
-        isWide ? "px-2 w-[210px] border-white" : "pl-1 w-8 border-gray-dark"
+        isWide
+          ? "px-2 w-[210px] border-textColor-dark"
+          : "pl-1 w-8 border-gray-dark"
       }`}
     >
       <button className="z-10">
         <MagnifyingGlassIcon
           strokeWidth={2}
           className={`transition-smooth customIcon-sm ${
-            isWide ? "text-white" : "text-gray-dark"
+            isWide ? "text-textColor-dark" : "text-gray-dark"
           }`}
         />
       </button>

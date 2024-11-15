@@ -5,6 +5,7 @@ export default function useDarkMode() {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // 이전 설정을 확인하고, 시스템 설정에 따라 초기 다크 모드 설정
     const userPreference = localStorage.getItem("theme");
+    console.log(userPreference);
     if (userPreference) {
       return userPreference === "dark";
     }

@@ -1,27 +1,26 @@
 import {
   Bars3Icon as MenuBarsIcon,
-  ArrowLeftEndOnRectangleIcon as LoginIcon,
-  ArrowRightStartOnRectangleIcon as LogoutIcon,
-  ChevronLeftIcon as BackIcon,
-  UserPlusIcon as SignUpIcon,
   MoonIcon,
   SunIcon,
 } from "@heroicons/react/24/outline";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDebounce } from "../../hooks/useDebounce";
+import useDebounce from "../../hooks/useDebounce";
 import { logout, supabase } from "../../API/authAPI";
 import Avatar from "../Avatar";
-import { useUser } from "../../hooks/useUser";
+import useUser from "../../hooks/useUser";
 import useDarkMode from "../../hooks/useDarkMode";
 import SearchForm from "../form/SearchForm";
-import { useRemoveFocus } from "../../hooks/useRemoveFocus";
+import useRemoveFocus from "../../hooks/useRemoveFocus";
+import useScroll from "../../hooks/useScroll";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false); // 사이드바
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // 프로필 드롭다운 메뉴
   const [searchQuery, setSearchQuery] = useState(""); // 검색어
   const { isDarkMode, toggleDarkMode } = useDarkMode(); // 다크모드
+  const isScrolled = useScroll(); // 스크롤에 따른 배경색 설정
+
   const avatarRef = useRef();
   const dropdownRef = useRef();
 
@@ -78,7 +77,11 @@ export default function NavBar() {
 
   return (
     <nav>
-      <div className="min-w-[380px] fixed top-0 z-10 flex items-center w-full px-5 bg-black h-16">
+      <div
+        className={`min-w-[380px] fixed top-0 z-10 flex items-center w-full px-5 h-16 transition-smooth ${
+          isScrolled ? "bg-bgColor-dark" : "bg-transparent"
+        }`}
+      >
         {/* 모바일 : 메뉴 버튼만 표시*/}
         <MenuBarsIcon
           onClick={toggleMenu}

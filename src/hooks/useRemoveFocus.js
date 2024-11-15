@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export function useRemoveFocus(ref, onBlurCallback, clearIconRef = {}) {
+export default function useRemoveFocus(ref, onBlurCallback, clearIconRef = {}) {
   useEffect(() => {
     function handleClickOutside(event) {
       if (

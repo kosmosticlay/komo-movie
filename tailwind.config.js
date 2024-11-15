@@ -11,6 +11,8 @@ export default {
         "primary-dark": "#f97316",
         "secondary-dark": "#fed7aa",
         "gray-dark": "#9ca3af",
+        "bgColor-dark": "#000000",
+        "textColor-dark": "#ffffff",
       },
       keyframes: {
         "slide-up": {

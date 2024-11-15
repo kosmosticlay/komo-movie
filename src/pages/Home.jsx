@@ -22,7 +22,7 @@ export default function Home() {
   console.log(popularMovies);
 
   return (
-    <main className="w-full pt-20 bg-blue-200 md:p-0 ">
+    <main className="w-full pt-20 bg-blue-200 md:p-0 h-[2000px] ">
       <h1 className="text-3xl font-bold text-center text-white">
         Home 컴포넌트
       </h1>
